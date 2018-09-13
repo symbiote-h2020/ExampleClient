@@ -4,7 +4,7 @@ This is an example symbIoTe client implemented in Java
 
 To compile the project use  with
 
-`gradle clean fatJar`
+`gradle clean build`
 
 and to run a specific class use:
 
