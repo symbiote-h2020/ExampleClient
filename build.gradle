@@ -1,0 +1,63 @@
+plugins {
+    // code
+    id 'java'
+
+    // IDEs
+    id 'eclipse'
+    id 'idea'
+
+    // publishing
+    id 'com.cinnober.gradle.semver-git' version "2.3.1"
+}
+
+// XXX please change with your commits according to http://semver.org/
+project.version = '1.0.0'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+// dependencies section
+repositories {
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+}
+
+/*
+Forces dependencies' cache invalidation for each build for dependencies marked with
+    { changing = true }
+    e.g.
+    compile('com.github.symbiote-h2020:SymbIoTeLibraries:develop-SNAPSHOT'){ changing = true }
+ */
+configurations.all {
+    // check for updates every build
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
+
+dependencies {
+    /* SymbIoTeLibraries manual:
+        One can use the library from jitpack by default with the notation:
+            compile('com.github.symbiote-h2020:SymbIoTeLibraries:develop-SNAPSHOT') {changing = true }
+        or having cloned locally the SymbIoTeLibraries repo use it directly with project dependency by:
+            compile project(':SymbIoTeLibraries')
+        Important --- In order to use the latter you need to:
+            1) switch comments on the artifact and project dependencies
+            2) always have only one uncommented
+            3) project dependency requires changes in settings.gradle file in this project
+            4) never commit build.gradle which has project dependencies active as it will break CI builds
+    */
+
+    compile('com.github.symbiote-h2020:SymbIoTeLibraries:5.28+') { changing = true }
+    compile('org.apache.logging.log4j:log4j-api:2.+')
+    compile('org.apache.logging.log4j:log4j-core:2.+')
+}
+
+
+//create a single Jar with all dependencies
+jar {
+    exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA'
+    manifest {
+        attributes 'Implementation-Version': project.version
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
