@@ -1,0 +1,1 @@
+java -Dhttp.proxyHost=icache.intranet.gr -Dhttp.proxyPort=80 -Dhttps.proxyHost=icache.intranet.gr -Dhttps.proxyPort=80 -cp build\libs\ExampleClient-all-1.0.0.jar  eu.h2020.symbiote.client.example.PortoDemo

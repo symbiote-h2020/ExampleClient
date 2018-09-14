@@ -267,15 +267,15 @@ public class PortoDemo {
             System.out.println("No resource found");
         } else {
             System.out.println("The following resources were found:\n");
-            System.out.println("Name\t\t\tType");
+            System.out.printf("%-20s%s%n", "Name", "Type");
 
-            for (int i = 0; i < 20; i++) {
+            for (int i = 0; i < 36; i++) {
                 System.out.print("=");
             }
             System.out.println();
 
             for (FederatedResource r : resources) {
-                System.out.println(r.getCloudResource().getResource().getName() + "\t\t" + r.getResourceType());
+                System.out.printf("%-20s%s%n", r.getCloudResource().getResource().getName(), r.getResourceType());
             }
         }
     }
