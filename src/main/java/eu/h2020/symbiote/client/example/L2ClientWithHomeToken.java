@@ -26,6 +26,11 @@ public class L2ClientWithHomeToken {
     public static void main(String[] args) {
 
         /*
+        The code below assumes that there is already a registered user. If you have not register a user, you can do it
+        by running the RegisterUserExample
+        */
+
+        /*
         Get the factory and the component clients
          */
 
@@ -36,6 +41,9 @@ public class L2ClientWithHomeToken {
         Type type = Type.FEIGN;
         String platformId = "examplePlatformId";
         String federationId = "exampleFederationId";
+        String username = "userNameInHomePlatform"; // Username of the registered user to the PAAM
+        String password = "passwordInHomePlatform"; // Password of the registered user to the PAAM
+        String clientId = "exampleClientId";        // The client id. Each user can have multiple client ids e.g. one for each of his devices
 
         // Printing output
         ObjectMapper om = new ObjectMapper();
@@ -58,10 +66,6 @@ public class L2ClientWithHomeToken {
             // Here, you can add credentials FOR MORE THAN 1 platforms
             Set<HomePlatformCredentials> platformCredentials = new HashSet<>();
 
-            // example credentials
-            String username = "user";
-            String password = "user";
-            String clientId = "exampleClientId";
             HomePlatformCredentials exampleHomePlatformCredentials = new HomePlatformCredentials(
                     platformId,
                     username,

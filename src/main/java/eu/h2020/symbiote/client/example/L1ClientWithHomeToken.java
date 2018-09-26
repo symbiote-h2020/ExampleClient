@@ -22,6 +22,11 @@ public class L1ClientWithHomeToken {
     public static void main(String[] args) {
 
         /*
+        The code below assumes that there is already a registered user. If you have not register a user, you can do it
+        by running the RegisterUserExample
+        */
+
+        /*
         Get the factory and the component clients
          */
 
@@ -32,6 +37,9 @@ public class L1ClientWithHomeToken {
         String keystorePassword = "testKeystore";
         String exampleHomePlatformId = "exampleHomePlatformId";
         Type type = Type.FEIGN;
+        String username = "userNameInHomePlatform"; // Username of the registered user to the PAAM
+        String password = "passwordInHomePlatform"; // Password of the registered user to the PAAM
+        String clientId = "exampleClientId";        // The client id. Each user can have multiple client ids e.g. one for each of his devices
 
         // Get the configuration
         Config config = new Config(coreAddress, keystorePath, keystorePassword, type);
@@ -51,10 +59,6 @@ public class L1ClientWithHomeToken {
             // Here, you can add credentials FOR MORE THAN 1 platforms
             Set<HomePlatformCredentials> platformCredentials = new HashSet<>();
 
-            // example credentials
-            String username = "userNameInHomePlatform";
-            String password = "passwordInHomePlatform";
-            String clientId = "exampleClientId";
             HomePlatformCredentials exampleHomePlatformCredentials = new HomePlatformCredentials(
                     exampleHomePlatformId,
                     username,
