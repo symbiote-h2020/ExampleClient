@@ -5,18 +5,9 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import eu.h2020.symbiote.client.AbstractSymbIoTeClientFactory;
 import eu.h2020.symbiote.client.interfaces.SMClient;
 import eu.h2020.symbiote.cloud.model.internal.Subscription;
-import eu.h2020.symbiote.security.commons.enums.AccountStatus;
-import eu.h2020.symbiote.security.commons.enums.OperationType;
-import eu.h2020.symbiote.security.commons.enums.UserRole;
-import eu.h2020.symbiote.security.commons.exceptions.custom.AAMException;
 import eu.h2020.symbiote.security.commons.exceptions.custom.SecurityHandlerException;
-import eu.h2020.symbiote.security.communication.IAAMClient;
-import eu.h2020.symbiote.security.communication.payloads.Credentials;
-import eu.h2020.symbiote.security.communication.payloads.UserDetails;
-import eu.h2020.symbiote.security.communication.payloads.UserManagementRequest;
 
 import java.security.NoSuchAlgorithmException;
-import java.util.HashMap;
 
 import static eu.h2020.symbiote.client.AbstractSymbIoTeClientFactory.*;
 
